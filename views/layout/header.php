@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="https://kute-themes.com/html/edo/html/assets/lib/owl.carousel/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="https://kute-themes.com/html/edo/html/assets/lib/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="https://kute-themes.com/html/edo/html/assets/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/global.css?<?= date('l jS \of F Y h:i:s A') ?>" />
+    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/style.css?<?= date('l jS \of F Y h:i:s A') ?>" />
+    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/responsive.css?<?= date('l jS \of F Y h:i:s A') ?>" />
+    <link rel="stylesheet" type="text/css" href="../../vendor/frontend/css/custom.css?<?= date('l jS \of F Y h:i:s A') ?>" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 
@@ -77,17 +77,31 @@
             background: none !important;
         }
     </style>
+    <?php
+    include_once('../../model/db.php');
+    include_once('../../model/category.php');
+    include_once('../../model/user.php');
+    include_once('../../model/cart.php');
+    session_start();
+    // unserialize
+    $user = $_SESSION['user'];
+    ?>
+
     <header id="header">
         <!-- Top bar -->
         <div class="top-bar">
             <div class="">
                 <div class="">
                     <ul class="top-bar-link top-bar-link-right dot">
-
-                        <li><a href="http://localhost/tiki/views/login.php">Sign in</a></li>
-                        <li><a href="http://localhost/tiki/views/login.php">Sign up</a></li>
-
-
+                        <?php if (!$user) { ?>
+                            <li><a href="http://localhost/tiki/views/pages/login.php">Sign in</a></li>
+                            <li><a href="http://localhost/tiki/views/pages/login.php">Sign up</a></li>
+                        <?php
+                        } else {
+                            $user = unserialize($user);
+                            ?>
+                            <li><a href="">Hi <?= $user->fullName; ?></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -100,7 +114,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
                             <div class="logo text-center">
-                                <a href="http://localhost/tiki/views/layout/master.php">
+                                <a href="http://localhost/tiki/views/pages/home.php">
                                     <img src="../../vendor/frontend/images/logo_white.png" alt="Logo" style="height: 100px ; margin: -20px -10px">
                                     <h2 style="color: white; display: inline-block">Tiki</h2>
                                 </a>
@@ -115,7 +129,6 @@
                                     <div class="form-group search-category">
                                         <select id="category-select" class="search-category-select" name="category">
                                             <option value="">All Categories</option>
-
                                             <option value="">Điện thoại - Máy tính bảng</option>
                                             <option value="">Điện tử - Điện lạnh</option>
                                             <option value="">Phụ kiện - Thiết bị số </option>
@@ -138,7 +151,7 @@
                             </button>
                             <div class="block-wrap-cart ">
                                 <div class="">
-                                    <a href="" class="fa fa-shopping-cart shopping_icon not0">
+                                    <a href="http://localhost/tiki/views/pages/cart.php" class="fa fa-shopping-cart shopping_icon not0">
                                     </a>
                                 </div>
                                 <div class="block-mini-cart">

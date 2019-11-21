@@ -10,7 +10,7 @@ class db{
         // Create connection
         $conn= db::$conn;
         if(!$conn){
-            $conn = new mysqli($servername, $username, $password,"danhba");
+            $conn = new mysqli($servername, $username, $password,"web_ban_hang");
         }
         // Check connection
         if ($conn->connect_error) {

@@ -1,22 +1,8 @@
 <?php
 
 session_start();
-include_once('model/user.php');
-$user = null;
-$infomation;
 if($_SESSION['user']){
-  header('Location: index.php');
-}
-if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-  $userName = $_REQUEST['email'];
-  $password = $_REQUEST['password'];
-  $user = User::authentication($userName, $password);
-  if ($user != null) {
-    $_SESSION['user'] = serialize($user);
-    header('Location: index.php');
-  } else {
-    $infomation = "Dang nhap that bap";
-  }
+	header('Location: http://localhost/tiki/views/pages/home.php');
 }
 ?>
 <!DOCTYPE html>
@@ -30,15 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../Login_v1/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../Login_v1/vendor/animate/animate.css">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="../../Login_v1/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../Login_v1/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="../../Login_v1/css/main.css">
 <!--===============================================================================================-->
 </head>
@@ -51,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 					<img src="../../Login_v1/images/img-01.png" alt="IMG">
 				</div>
 
-				<form method="post" action="" class="login100-form validate-form">
+				<form method="post" action="http://localhost/tiki/controller/user.php" class="login100-form validate-form">
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -112,7 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
 
 </body>
 </html>
