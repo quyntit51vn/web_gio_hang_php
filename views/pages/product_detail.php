@@ -120,9 +120,9 @@ if ($product == null) {
                             <h3 class="product-name"><?= $product->name ?></h3>
                             <div class="price-box product_details" style="overflow: hidden; margin-top: 20px">
 
-                                <span class="product-price" style="color: red;"> Deal Price : <?= $product->price * (100 - $product->deal) / 100 ?>
+                                <span class="product-price" style="color: red;"> Deal Price : <?= number_format($product->price * (100 - $product->deal) / 100) ?>
                                     <span class="text-primary" style="font-size: 12px; color: red;"></span></span>
-                                <span class="product-price-old"> Old Price : <?= $product->price ?>
+                                <span class="product-price-old"> Old Price : <?= number_format($product->price) ?>
                                     <span class="text-primary" style="font-size: 12px; color: grey"></span>
                                 </span>
                                 <span class="text-danger badge" style="background-color: forestgreen;"> -<?= $product->deal ?>% </span>

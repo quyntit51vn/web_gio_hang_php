@@ -81,11 +81,11 @@ $category_field = category::getList();
                                         </div>
                                         <div class="price-box">
                                             <span class="product-price" style="color: red;">
-                                                <?=$product->price*(100-$product->deal)/100?>
+                                                <?=number_format($product->price*(100-$product->deal)/100)?>
                                                 <span class="text-primary" style="font-size: 12px; color: red">VND</span>
                                             </span>
                                             <span class="product-price-old">
-                                                <?=$product->price?>
+                                                <?=number_format($product->price)?>
                                                 <span class="text-primary" style="font-size: 12px; color: grey">VND</span>
                                             </span>
                                         </div>

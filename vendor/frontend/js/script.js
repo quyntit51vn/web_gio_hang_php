@@ -223,10 +223,10 @@
         // Zoom
         if($('.easyzoom').length >0){
             // Instantiate EasyZoom instances
-            var $easyzoom = $('.easyzoom').easyZoom();
+            // var $easyzoom = $('.easyzoom').easyZoom();
 
-            // Get an instance API
-            var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+            // // Get an instance API
+            // var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
 
             // Setup thumbnails example
             $('.thumbnails').on('click', 'a', function(e) {
@@ -239,21 +239,21 @@
                 var $this = $(this);
                 e.preventDefault();
                 // Use EasyZoom's `swap` method
-                api1.swap($this.data('standard'), $this.attr('href'));
+                // api1.swap($this.data('standard'), $this.attr('href'));
 
             });
 
             // Setup toggles example
-            var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
+            // var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
 
             $('.toggle').on('click', function() {
                 var $this = $(this);
                 if ($this.data("active") === true) {
                     $this.text("Switch on").data("active", false);
-                    api2.teardown();
+                    // api2.teardown();
                 } else {
                     $this.text("Switch off").data("active", true);
-                    api2._init();
+                    // api2._init();
                 }
             });
         }

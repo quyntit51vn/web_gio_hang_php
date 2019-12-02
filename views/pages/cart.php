@@ -1,9 +1,14 @@
 <?php
+session_start();
+if($_SESSION['user'] == null){
+    header('Location: http://localhost/tiki/views/pages/login.php');
+}
 include_once('../layout/header.php');
 include_once('../../model/category.php');
 include_once('../../model/product.php');
 include_once('../../model/cart.php');
 $products = cart::getList();
+
 ?>
 <div class="container">
     <div class="row">

@@ -6,25 +6,10 @@ include_once('../../model/product.php');
 ?>
 <div class="container">
     <?php
-    if (isset($_REQUEST['category']) || $_REQUEST['category'] == null)
-        header('Location: http://localhost/tiki/views/pages/home.php');
-    $categoryCurent = category::getCategoryById($_REQUEST['category']);
-    if ($categoryCurent == null)
-        header('Location: http://localhost/tiki/views/pages/home.php');
-    $products = product::getListByCategoryId($_REQUEST['category']);
+    
+    $products = product::getListSearch($_REQUEST['category'],$_REQUEST['keyword']);
     ?>
-    <div class="block block-breadcrumbs">
-        <ul>
-            <li class="home">
-                <a href="http://localhost/tiki/views/pages/home.php"><i class="fa fa-home"></i></a>
-                <span></span>
-            </li>
-            <li><a><?=$categoryCurent->name?></a><span></span></li>
-        </ul>
-    </div>
-    <h3 class="page-title">
-        <span><?=$categoryCurent->name ?></span>
-    </h3>
+    
     <div class="category-products tab-pane fade in active " id="row_gird">
         <?php if(count($products)){ ?>
         <ul class="products row">

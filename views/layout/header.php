@@ -100,7 +100,16 @@
                         } else {
                             $user = unserialize($user);
                             ?>
-                            <li><a href="">Hi <?= $user->fullName; ?></a></li>
+                            <li>
+                                <a href="">Hi <?= $user->fullName; ?></a>
+
+                            </li>
+                            <li class="dropdown-item">
+                                <form method="post" action="http://localhost/tiki/controller/user.php">
+                                    <input type="hidden" name="action" value="logout">
+                                    <button type="submit"> logout</button>
+                                </form>
+                            </li>
                         <?php } ?>
                     </ul>
                 </div>
@@ -125,18 +134,18 @@
                                 <i class="fa fa-times-circle-o"></i>
                             </button>
                             <div class="box-radius advanced-search">
-                                <form class="form-inline" method="get" action="">
+                                <form class="form-inline" method="get" action="http://localhost/tiki/views/pages/search.php">
                                     <div class="form-group search-category">
+                                        <?php $list_categories = category::getList();?>
                                         <select id="category-select" class="search-category-select" name="category">
-                                            <option value="">All Categories</option>
-                                            <option value="">Điện thoại - Máy tính bảng</option>
-                                            <option value="">Điện tử - Điện lạnh</option>
-                                            <option value="">Phụ kiện - Thiết bị số </option>
-                                            <option value="">Xe máy - ô tô - xe đạp</option>
+                                            <option value="all">All category</option>
+                                            <?php foreach($list_categories as $value){ ?>
+                                            <option value="<?= $value->id?>"><?=$value->name?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                     <div class="form-group search-input">
-                                        <input name="keyword" type="text" placeholder="What are you looking for?" value="">
+                                        <input name="keyword" type="text" placeholder="What are you looking for?" value="<?=$_REQUEST['keyword']?>">
                                     </div>
                                     <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
                                 </form>
@@ -152,9 +161,24 @@
                             <div class="block-wrap-cart ">
                                 <div class="">
                                     <a href="http://localhost/tiki/views/pages/cart.php" class="fa fa-shopping-cart shopping_icon not0">
+                                        <?php if(count(cart::getList())){?>
+                                        <div style="width: 15px;
+                                            height: 15px;
+                                            border-radius: 50%;
+                                            color: #fff;
+                                            font-size: 15px;
+                                            background: red;
+                                            text-align: center;
+                                            line-height: 15px;
+                                            top: -5px;
+                                            position: absolute;
+                                            right: -6px;">
+                                            <?php 
+                                                echo count(cart::getList());
+                                            ?>
+                                        </div>
+                                        <?php }?>
                                     </a>
-                                </div>
-                                <div class="block-mini-cart">
                                 </div>
                             </div>
                         </div>
