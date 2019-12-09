@@ -66,14 +66,14 @@ if ($product == null) {
 
     .btn-plus {
         margin: -60px 0px 0px 57px;
-
-        .description>.title {
-            margin-top: 10px;
-            background-color: #0BCCC8;
-            color: #fff;
-            padding: 10px;
-            font-size: 24px;
-        }
+    }
+    .description>.title {
+        margin-top: 10px;
+        background-color: #0BCCC8;
+        color: #fff;
+        padding: 10px;
+        font-size: 24px;
+    }
 </style>
 <div class="container product-page">
     <div class="row">

@@ -34,6 +34,47 @@ class banner {
         return $ls;
     }
 
+    static function getBannerById($id){
+        $ls = banner::getList();
+        foreach($ls as $banner){
+            if($banner->id == $id)
+                return $banner;
+        }
+        return null;
+    }
+
+    static function add($banner){
+        $conn = db::connect();
+        
+        $sql = "INSERT INTO `banners` (`banner`, `url_banner`) 
+                VALUES ('".$banner->banner."',
+                        '".$banner->url_banner."')";
+        echo $sql;
+        
+        $result = $conn->query($sql);
+        echo $conn->error;
+        $conn->close();
+    }
+
+    static function delete($id){
+        $conn = db::connect();
+        $sql = "DELETE FROM `banners` WHERE `id` = ".$id;
+        $result = $conn->query($sql);
+        echo $result;
+        echo $conn->error;
+        $conn->close();
+    }
+
+
+    static function update($banner){
+        $conn = db::connect();
+        $sql = "UPDATE `banners` SET `banner`= '".$banner->banner."', 
+                                    `url_banner` = '".$banner->url_banner."', 
+                                    WHERE id = ".$banner->id;
+        $result = $conn->query($sql);
+        echo $conn->error;
+        $conn->close();
+    }
     
     
 }

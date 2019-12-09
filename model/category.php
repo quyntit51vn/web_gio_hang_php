@@ -9,7 +9,7 @@ class category {
     var $url_banner; // đường dẫn url cua banner khi click vao
     var $name; // tên của category
     var $image; // icon của category
-    var $parent_id; // id cha của cateogry
+    var $parent_id; // id cha của category
     
     public function __construct($id,$banner,$url_banner,$name,$image,$parent_id)
     {
@@ -71,30 +71,38 @@ class category {
         $conn = db::connect();
         
         $sql = "INSERT INTO `categories` (`banner`, `url_banner`, `name`,`image`,`parent_id`) 
-                VALUES ('".$category->banner."','".$category->url_banner."','".$category->name."','".$category->image."','".$category->parent_id."')";
+                VALUES ('".$category->banner."',
+                        '".$category->url_banner."',
+                        '".$category->name."',
+                        '".$category->image."',
+                        ".$category->parent_id.")";
+        echo $sql;
+        
         $result = $conn->query($sql);
         echo $conn->error;
         $conn->close();
     }
 
-    static function deleteFromDB($id){
+    static function delete($id){
         $conn = db::connect();
         $sql = "DELETE FROM `categories` WHERE `id` = ".$id;
         $result = $conn->query($sql);
+        echo $result;
         echo $conn->error;
         $conn->close();
     }
 
 
-    // static function updateFromDB($danhba){
-    //     $conn = db::connect();
-        
-    //     $sql = "UPDATE `danhba` SET `ten`= '".$danhba->ten."', 
-    //                                 `email` = '".$danhba->email."', 
-    //                                 `sodienthoai`='".$danhba->sodienthoai."'
-    //                                 WHERE id = ".$danhba->id;
-    //     $result = $conn->query($sql);
-    //     echo $conn->error;
-    //     $conn->close();
-    // }
+    static function update($category){
+        $conn = db::connect();
+        $sql = "UPDATE `categories` SET `banner`= '".$category->banner."', 
+                                    `url_banner` = '".$category->url_banner."', 
+                                    `name`='".$category->name."',
+                                    `image`='".$category->image."',
+                                    `parent_id`=".$category->parent_id."
+                                    WHERE id = ".$category->id;
+        $result = $conn->query($sql);
+        echo $conn->error;
+        $conn->close();
+    }
 }
